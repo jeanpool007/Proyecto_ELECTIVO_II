@@ -1,4 +1,4 @@
-function load(page){
+	function load(page){
 		var parametros = {"action":"ajax","page":page};
 		$("#loader").fadeIn('slow');
 		$.ajax({
@@ -11,53 +11,56 @@ function load(page){
 				$(".outer_div").html(data).fadeIn('slow');
 				$("#loader").html("");
 			}
-		});
-	}
-
-		$('#dataUpdate').on('show.bs.modal', function (event) {
-		  var button = $(event.relatedTarget) // Botón que activó el modal
-		  var codigo = button.data('codigo') // Extraer la información de atributos de datos
-		  var id = button.data('id') // Extraer la información de atributos de datos
-		  var nombre = button.data('nombre') // Extraer la información de atributos de datos
-		  var moneda = button.data('moneda') // Extraer la información de atributos de datos
-		  var capital = button.data('capital') // Extraer la información de atributos de datos
-		  var continente = button.data('continente') // Extraer la información de atributos de datos
-		  
-		  var modal = $(this)
-		  modal.find('.modal-title').text('Modificar país: '+nombre)
-		  modal.find('.modal-body #id').val(id)
-		  modal.find('.modal-body #codigo').val(codigo)
-		  modal.find('.modal-body #nombre').val(nombre)
-		  modal.find('.modal-body #moneda').val(moneda)
-		  modal.find('.modal-body #capital').val(capital)
-		  modal.find('.modal-body #continente').val(continente)
-		  $('.alert').hide();//Oculto alert
 		})
+	}
+        
+        
+
+//		$('#dataUpdate').on('show.bs.modal', function (event) {
+//		  var button = $(event.relatedTarget) // Botón que activó el modal
+//		  var codigo = button.data('codigo') // Extraer la información de atributos de datos
+//		  var id = button.data('id') // Extraer la información de atributos de datos
+//		  var nombre = button.data('nombre') // Extraer la información de atributos de datos
+//		  var moneda = button.data('moneda') // Extraer la información de atributos de datos
+//		  var capital = button.data('capital') // Extraer la información de atributos de datos
+//		  var continente = button.data('continente') // Extraer la información de atributos de datos
+//		  
+//		  var modal = $(this)
+//		  modal.find('.modal-title').text('Modificar país: '+nombre)
+//		  modal.find('.modal-body #id').val(id)
+//		  modal.find('.modal-body #codigo').val(codigo)
+//		  modal.find('.modal-body #nombre').val(nombre)
+//		  modal.find('.modal-body #moneda').val(moneda)
+//		  modal.find('.modal-body #capital').val(capital)
+//		  modal.find('.modal-body #continente').val(continente)
+//		  $('.alert').hide();//Oculto alert
+//		})
 		
 		$('#dataDelete').on('show.bs.modal', function (event) {
 		  var button = $(event.relatedTarget) // Botón que activó el modal
 		  var id = button.data('id') // Extraer la información de atributos de datos
 		  var modal = $(this)
-		  modal.find('#id_pais').val(id);
+		  modal.find('#codigo_empleado').val(id)
 		})
 
-	$( "#actualidarDatos" ).submit(function( event ) {
-		var parametros = $(this).serialize();
-			 $.ajax({
-					type: "POST",
-					url: "modificar.php",
-					data: parametros,
-					 beforeSend: function(objeto){
-						$("#datos_ajax").html("Mensaje: Cargando...");
-					  },
-					success: function(datos){
-					$("#datos_ajax").html(datos);
-					
-					load(1);
-				  }
-			});
-		  event.preventDefault();
-		});
+//	     $( "#actualidarDatos" ).submit(function( event ) {
+//		var parametros = $(this).serialize();
+//			 $.ajax({
+//					type: "POST",
+//					url: "modificar.php",
+//					data: parametros,
+//					 beforeSend: function(objeto){
+//						$("#datos_ajax").html("Mensaje: Cargando...");
+//					  },
+//					success: function(datos){
+//					$("#datos_ajax").html(datos);
+//					
+//					load(1);
+//				  }
+//			});
+//		  event.preventDefault();
+//		});
+		
 		$( "#guardarDatos" ).submit(function( event ) {
 		var parametros = $(this).serialize();
 			 $.ajax({
@@ -94,37 +97,3 @@ function load(page){
 			});
 		  event.preventDefault();
 		});
-                $('#bs-prod').on('keyup',function(){
-		var dato = $('#bs-prod').val();
-		var url = 'php/busca_venta.php';
-		$.ajax({
-		type:'POST',
-		url:url,
-		data:'dato='+dato,
-		success: function(datos){
-			$('#agrega-registros').html(datos);
-		}
-	});
-	return false;
-	});
-                
-function buscar(){
-         $('#buscar').on('keyup',function(){
-		var dato = $('#buscar').val();
-		var url = 'buscar.php';
-		$.ajax({
-		type:'POST',
-		url:url,
-		datos:'dato='+dato,
-		success: function(datos){
-			$(".outer_div").html(datos).fadeIn('slow');
-		         $("#loader").html("");
-		}
-	});
-	return false;
-	});
-}
- 
-window.addEventListener('load', function(){
-    document.getElementById('buscar').addEventListener('input', buscar, false);
-}, false);
